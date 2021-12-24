@@ -1,4 +1,6 @@
-import '../styles/App.css';
+import React from 'react';
+import './styles/App.css';
+import { generateArray } from './utils/helpers.js'
 
 function App() {
   return (
@@ -18,15 +20,15 @@ function App() {
       </header>
 
       <main>
-        <div className='elements'>
-
+        <div className='elements' id='elements'>
+          { generateArray() }
         </div>
 
         <div className='control-panel'>
           <h4>Size of Array</h4>
-          <input type='range' min='10' max='100' defaultValue='55' step='5' className='range' />
+          <input type='range' min='10' max='100' defaultValue='55' step='5' className='range' id='size'/>
           <h4>Speed of Process</h4>
-          <input type='range' min='10' max='100' defaultValue='55' step='5' className='range'/>
+          <input type='range' min='10' max='100' defaultValue='55' step='5' className='range'id='speed' />
           <input type='button' className='button' value='sort' />
         </div>
       </main>

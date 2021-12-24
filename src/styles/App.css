@@ -50,6 +50,7 @@ main {
 
 .elements {
     width: 90%;
+    height: 70%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -57,8 +58,7 @@ main {
 
 .element {
     background: var(--blue);
-    width: 20px;
-    height: 500px;
+    margin: 0 1px;
 }
 
 .control-panel {
@@ -79,6 +79,7 @@ main {
     background: var(--blue);
     margin: 5px 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .control-panel .button {
@@ -86,7 +87,6 @@ main {
     border: 0;
     color: var(--white);
     padding: 10px 0;
-    cursor: pointer;
     text-transform: uppercase;
     transition: .2s;
 }
