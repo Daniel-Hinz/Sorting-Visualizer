@@ -4,8 +4,6 @@
     --blue: rgb(112,146,190);
     --light-blue: #7b8eb0;
     --lighter-blue: #92A8D1;
-    --white: #ffffff;
-    --whitesmoke: #f5f5f5;
 }
 
 header {
@@ -15,7 +13,7 @@ header {
     justify-content: flex-start;
     align-items: center;
     background: var(--dark-blue);
-    color: var(--white);
+    color: white;
 }
 
 header h1 {
@@ -29,18 +27,12 @@ select, select:focus {
     right: 25px;
     font-size: 22.5px;
     background: transparent;
-    color: var(--white);
+    color: white;
     outline: 0;
     border: 0;
     cursor: pointer;
     font-style: italic;
     padding: 10px;
-}
-
-option {
-    background: var(--white);
-    color: var(--dark-blue);
-    cursor: pointer;
 }
 
 main {
@@ -85,12 +77,8 @@ main {
 .control-panel .button {
     outline: 0;
     border: 0;
-    color: var(--white);
+    color: white;
     padding: 10px 0;
     text-transform: uppercase;
     transition: .2s;
-}
-
-.control-panel .button:hover {
-    background: var(--lighter-blue);
 }
