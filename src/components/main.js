@@ -6,21 +6,28 @@ class Main extends React.Component {
         super(props)
         this.state = { 
             size: 55,
-            speed: 250
+            speed: 250,
+            elements: []
         };
+
+        for (let i = 0; i < 100; ++i) {
+            this.state.elements.push({
+                height: ((Math.random() * 90) + 10 + "%"),
+                width: (100 / this.state.size + "%")
+            })
+        }
     }
 
     render() {
-        this.elements = []
+        let elements = [];
 
         for (let i = 0; i < this.state.size; ++i) {
-            let element = {
-                height : ((Math.random() * 90) + 10 + "%"),
-                width : (100 / this.state.size + "%")
-            }
-            this.elements.push(element);
+            elements.push({
+                height: this.state.elements[i].height,
+                width: (100 / this.state.size + "%")
+            });
         }
-    
+
         return (
             <div className='Main'>
                 <header>
@@ -39,17 +46,17 @@ class Main extends React.Component {
                 
                 <main>
                     <div className='elements'> {
-                        this.elements.map((element, i) => 
+                        elements.map((element, i) => 
                             <div className='element' style={{height: element.height, width: element.width}} key={i}></div>
                         )}
                     </div>
 
                     <div className='control-panel'>
                         <h4>Size of Array</h4>
-                        <input type='range' min='10' max='100' defaultValue='55' step='5' className='range' id='size' onChange={(e) => { this.setState({size : e.target.value}) }}/>
+                        <input type='range' min='5' max='95' defaultValue='50' step='5' className='range' id='size' onChange={(e) => { this.setState({size : e.target.value}) }}/>
                         <h4>Speed of Process</h4> 
                         <input type='range' min='10' max='490' defaultValue='250' step='5' className='range'id='speed' onChange={(e) => { this.setState({speed : e.target.value}) }}/>
-                        <input type='button' className='button' value='sort' onClick={ this.sortArray } />
+                        <input type='button' className='button' value='sort' />
                     </div>
                 </main>
             </div>
