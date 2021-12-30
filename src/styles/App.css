@@ -51,6 +51,8 @@ main {
 .element {
     background: var(--blue);
     margin: 0 1px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .control-panel {

@@ -5,29 +5,12 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
-            size: 55,
-            speed: 250,
-            elements: []
+            elements: Array.from({length: 50}, () => Math.floor(Math.random() * 90) + 10),
+            speed: 0,
         };
-
-        for (let i = 0; i < 100; ++i) {
-            this.state.elements.push({
-                height: ((Math.random() * 90) + 10 + "%"),
-                width: (100 / this.state.size + "%")
-            })
-        }
     }
 
     render() {
-        let elements = [];
-
-        for (let i = 0; i < this.state.size; ++i) {
-            elements.push({
-                height: this.state.elements[i].height,
-                width: (100 / this.state.size + "%")
-            });
-        }
-
         return (
             <div className='Main'>
                 <header>
@@ -46,16 +29,33 @@ class Main extends React.Component {
                 
                 <main>
                     <div className='elements'> {
-                        elements.map((element, i) => 
-                            <div className='element' style={{height: element.height, width: element.width}} key={i}></div>
+                        this.state.elements.map((element, i) => 
+                            <div    className = 'element' 
+                                    style = {{ height: element + '%', width: 100 / this.state.elements.length + '%' }} 
+                                    key = {i}>        
+                            </div>
                         )}
                     </div>
 
                     <div className='control-panel'>
                         <h4>Size of Array</h4>
-                        <input type='range' min='5' max='95' defaultValue='50' step='5' className='range' id='size' onChange={(e) => { this.setState({size : e.target.value}) }}/>
+                        <input  type='range' min='5' max='95' defaultValue='50' 
+                                step='5' className='range' id='size' 
+                                onChange={(e) => { 
+                                    this.setState({
+                                        elements: Array.from({length: e.target.value}, () => Math.floor(Math.random() * 90) + 10)  
+                                    });
+                                 }}
+                        />
+                        
                         <h4>Speed of Process</h4> 
-                        <input type='range' min='10' max='490' defaultValue='250' step='5' className='range'id='speed' onChange={(e) => { this.setState({speed : e.target.value}) }}/>
+                        <input  type='range' min='10' max='490' defaultValue='250' 
+                                step='5' className='range'id='speed'
+                                onChange={(e) => { 
+                                    this.setState({speed : e.target.value})
+                                }}
+                        />
+                        
                         <input type='button' className='button' value='sort' />
                     </div>
                 </main>
