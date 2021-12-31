@@ -1,17 +1,17 @@
 import React from 'react';
 import bubbleSort from '../utils/bubble.js'
-import heapSort from '../utils/heap.js'
 import insertionSort from '../utils/insertion.js'
-import mergeSort from '../utils/merge.js'
-import quickSort from '../utils/quick.js'
 import selectionSort from '../utils/selection.js'
+import callMergeSort from '../utils/merge.js'
+import callQuickSort from '../utils/quick.js'
+import callHeapSort from '../utils/heap.js'
 
 class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
             algorithm: "",
-            elements: Array.from({length: 50}, () => Math.floor(Math.random() * 90) + 10),
+            elements: Array.from({length: 50}, () =>(Math.random() * 90) + 10),
             speed: 0
         };
     }
@@ -22,7 +22,7 @@ class Main extends React.Component {
                 <header>
                     <h1>Sorting Visualizer</h1>
 
-                    <select name="algorithm" onChange={(e) => { 
+                    <select onChange={(e) => { 
                         this.setState({algorithm : e.target.value})
                     }}> 
                         <option value=''>Algorithm</option>
@@ -51,7 +51,7 @@ class Main extends React.Component {
                                 step='5' className='range' id='size'
                                 onChange={(e) => { 
                                     this.setState({
-                                        elements: Array.from({length: e.target.value}, () => Math.floor(Math.random() * 90) + 10)  
+                                        elements: Array.from({length: e.target.value}, () => (Math.random() * 90) + 10)  
                                     });
                                  }}
                         />
@@ -66,13 +66,31 @@ class Main extends React.Component {
                         
                         <input  type='button' className='button' value='sort' onClick={() => {
                                 switch(this.state.algorithm) {
-                                    case '': alert('please select a sorting algorithm'); break;
-                                    case 'bubble': bubbleSort(); break;
-                                    case 'selection': selectionSort(); break;
-                                    case 'insertion': insertionSort(); break;
-                                    case 'merge': mergeSort(); break;
-                                    case 'quick': quickSort(); break;
-                                    case 'heap': heapSort(); break;
+                                    case 'bubble': 
+                                        this.setState({elements: bubbleSort(this.state.elements)}); 
+                                        break;
+
+                                    case 'selection': 
+                                        this.setState({elements: selectionSort(this.state.elements)}); 
+                                        break;
+
+                                    case 'insertion': 
+                                        this.setState({elements: insertionSort(this.state.elements)}); 
+                                        break;
+                                        
+                                    case 'merge': 
+                                        this.setState({elements: callMergeSort(this.state.elements)}); 
+                                        break;
+
+                                    case 'quick': 
+                                        this.setState({elements: callQuickSort(this.state.elements)}); 
+                                        break;
+
+                                    case 'heap': 
+                                        this.setState({elements: callHeapSort(this.state.elements)}); 
+                                        break;
+
+                                    default: alert('please select a sorting algorithm') 
                                 }
                             }}
                         />
