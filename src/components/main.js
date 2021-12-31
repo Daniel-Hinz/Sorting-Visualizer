@@ -33,6 +33,8 @@ class Main extends React.Component {
                         <option value='quick'>Quick</option>                        
                         <option value='heap'>Heap</option>                    
                     </select>
+
+                    <i className="fas fa-chevron-down"></i>
                 </header>
                 
                 <main>
