@@ -95,11 +95,37 @@ main {
 }
 
 .control-panel input {
-    background: var(--blue);
     margin: 5px 0;
     border-radius: 5px;
     cursor: pointer;
 }
+
+.control-panel .range {
+    appearance: none;
+    background: whitesmoke;
+}
+
+.control-panel .speed {
+    -ms-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.control-panel .range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 12px;
+    cursor: pointer;
+  }
+
+.control-panel .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--blue);
+    margin-top: -2px;
+    cursor: pointer;
+  }
 
 .control-panel .button {
     outline: 0;
@@ -108,4 +134,5 @@ main {
     padding: 10px 0;
     text-transform: uppercase;
     transition: .2s;
+    background: var(--blue);
 }

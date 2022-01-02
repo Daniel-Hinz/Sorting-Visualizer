@@ -1,20 +1,25 @@
-export default function callMergeSort(elements) {
+export default async function callMergeSort(component, elements, speed) {
     let arr = elements;
-    mergeSort(arr, 0, arr.length - 1);
+    mergeSort(component, arr, 0, arr.length - 1, speed);
     return arr;
 }
 
-function mergeSort(arr, left, right) {
+async function mergeSort(component, arr, left, right, speed) {
     if(left < right) {
         let mid = left + parseInt((right - left) / 2);
   
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        await mergeSort(component, arr, left, mid, speed);
+        await mergeSort(component, arr, mid + 1, right, speed);
+        await merge(component, arr, left, mid, right, speed);
+
+        component.setState({ elements: arr })
+        await new Promise((resolve) =>
+          setTimeout(() => { resolve() }, speed )
+        );
     }
 }
 
-function merge(arr, left, mid, right) {
+async function merge(component, arr, left, mid, right, speed) {
     let n1 = mid - left + 1;
     let n2 = right - mid;
 
@@ -23,6 +28,7 @@ function merge(arr, left, mid, right) {
 
     for (let i = 0; i < n1; i++)
       leftArr[i] = arr[left + i];
+
     for (let j = 0; j < n2; j++)
       rightArr[j] = arr[mid + 1 + j];
 
@@ -37,6 +43,11 @@ function merge(arr, left, mid, right) {
           j++;
       }
       k++;
+
+      component.setState({ elements: arr })
+      await new Promise((resolve) =>
+        setTimeout(() => { resolve() }, speed )
+      );
     }
 
     while (i < n1) {

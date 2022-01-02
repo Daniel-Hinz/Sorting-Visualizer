@@ -11,10 +11,10 @@ class Main extends React.Component {
         super(props)
         this.state = { 
             algorithm: "",
-            elements: Array.from({length: 50}, () =>(Math.random() * 90) + 10),
-            speed: 0
+            elements: Array.from({length: 50}, () => (Math.random() * 90) + 10),
+            speed: 250
         };
-    }
+    }   
 
     render() {
         return (
@@ -50,7 +50,7 @@ class Main extends React.Component {
                     <div className='control-panel'>
                         <h4>Size of Array</h4>
                         <input  type='range' min='5' max='95' defaultValue='50' 
-                                step='5' className='range' id='size'
+                                step='5' className='size range' id='size'
                                 onChange={(e) => { 
                                     this.setState({
                                         elements: Array.from({length: e.target.value}, () => (Math.random() * 90) + 10)  
@@ -60,7 +60,7 @@ class Main extends React.Component {
                         
                         <h4>Speed of Process</h4> 
                         <input  type='range' min='10' max='490' defaultValue='250' 
-                                step='5' className='range'id='speed'
+                                step='5' className='speed range'id='speed'
                                 onChange={(e) => { 
                                     this.setState({speed : e.target.value})
                                 }}
@@ -69,27 +69,27 @@ class Main extends React.Component {
                         <input  type='button' className='button' value='sort' onClick={() => {
                                 switch(this.state.algorithm) {
                                     case 'bubble': 
-                                        this.setState({elements: bubbleSort(this.state.elements)}); 
+                                        bubbleSort(this, this.state.elements, this.state.speed);
                                         break;
 
                                     case 'selection': 
-                                        this.setState({elements: selectionSort(this.state.elements)}); 
+                                        selectionSort(this, this.state.elements, this.state.speed);
                                         break;
 
                                     case 'insertion': 
-                                        this.setState({elements: insertionSort(this.state.elements)}); 
+                                        insertionSort(this, this.state.elements, this.state.speed);
                                         break;
                                         
                                     case 'merge': 
-                                        this.setState({elements: callMergeSort(this.state.elements)}); 
+                                        callMergeSort(this, this.state.elements, this.state.speed);
                                         break;
 
                                     case 'quick': 
-                                        this.setState({elements: callQuickSort(this.state.elements)}); 
+                                        callQuickSort(this, this.state.elements, this.state.speed);
                                         break;
 
                                     case 'heap': 
-                                        this.setState({elements: callHeapSort(this.state.elements)}); 
+                                        callHeapSort(this, this.state.elements, this.state.speed);
                                         break;
 
                                     default: alert('please select a sorting algorithm') 

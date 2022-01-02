@@ -1,21 +1,26 @@
 import swap from './swap.js'
 
-export default function callQuickSort(elements) {
+export default function callQuickSort(component, elements, speed) {
     let arr = elements;
-    quickSort(arr, 0, arr.length-1);
+    quickSort(component, arr, 0, arr.length-1, speed);
     return arr;
 }
 
-function quickSort(arr, left, right) {
+async function quickSort(component, arr, left, right, speed) {
     if (left < right) {
-        let pivot = partition(arr, left, right); 
+        let pivot = await partition(component, arr, left, right, speed); 
 
-        quickSort(arr, left, pivot - 1);
-        quickSort(arr, pivot + 1, right);
+        await quickSort(component, arr, left, pivot - 1, speed);
+        await quickSort(component, arr, pivot + 1, right, speed);
+
+        component.setState({ elements: arr })
+        await new Promise((resolve) =>
+            setTimeout(() => { resolve() }, speed )
+        );
       }
   }
 
-function partition(arr, left, right) {
+async function partition(component, arr, left, right, speed) {
     let pivot = arr[right];
     let i = (left - 1);
   
@@ -24,8 +29,18 @@ function partition(arr, left, right) {
             i++;
             swap(arr, i, j);
         }    
+
+        component.setState({ elements: arr })
+        await new Promise((resolve) =>
+            setTimeout(() => { resolve() }, speed )
+        );
     }
 
     swap(arr, i+1, right);
+
+    component.setState({ elements: arr })
+    await new Promise((resolve) =>
+        setTimeout(() => { resolve() }, speed )
+    );
     return (i + 1);
 }

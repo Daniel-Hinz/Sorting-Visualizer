@@ -1,23 +1,33 @@
 import swap from './swap.js'
 
-export default function callHeapSort(elements) {
+export default function callHeapSort(component, elements, speed) {
     let arr = elements;
-    heapSort(arr);
+    heapSort(component, arr, speed);
     return arr;
 }
 
-function heapSort(arr) {  
+async function heapSort(component, arr, speed) {  
     for (let i = Math.floor(arr.length / 2) - 1; i >= 0; i--) {
-      heapify(arr, arr.length, i);
+      heapify(component, arr, arr.length, i, speed);
+
+      component.setState({ elements: arr })
+      await new Promise((resolve) =>
+          setTimeout(() => { resolve() }, speed )
+      );
     }
   
     for (let i = arr.length - 1; i > 0; --i) {
       swap(arr, 0, i);
-      heapify(arr, i, 0);
+      heapify(component, arr, i, 0, speed);
+
+      component.setState({ elements: arr })
+      await new Promise((resolve) =>
+          setTimeout(() => { resolve() }, speed )
+      );
     }
   }
 
-function heapify(arr, length, i) {
+function heapify(component, arr, length, i, speed) {
     var largest = i;
     var left    = 2 * i + 1;
     var right   = 2 * i + 2;
@@ -30,6 +40,6 @@ function heapify(arr, length, i) {
   
     if (largest !== i) {
       swap(arr, i, largest);
-      heapify(arr, length, largest);
+      heapify(component, arr, length, largest, speed);
     }
 }
