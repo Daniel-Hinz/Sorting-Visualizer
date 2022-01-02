@@ -1,8 +1,9 @@
 import swap from './swap.js'
 
-export default function callHeapSort(component, elements, speed) {
+export default async function callHeapSort(component, elements, speed) {
     let arr = elements;
-    heapSort(component, arr, speed);
+    await heapSort(component, arr, speed);
+    document.querySelector('.completed').style.display = 'flex';
     return arr;
 }
 

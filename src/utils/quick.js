@@ -1,8 +1,9 @@
 import swap from './swap.js'
 
-export default function callQuickSort(component, elements, speed) {
+export default async function callQuickSort(component, elements, speed) {
     let arr = elements;
-    quickSort(component, arr, 0, arr.length-1, speed);
+    await quickSort(component, arr, 0, arr.length-1, speed);
+    document.querySelector('.completed').style.display = 'flex';
     return arr;
 }
 

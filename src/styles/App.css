@@ -119,15 +119,24 @@ main {
 
 .control-panel .range::-webkit-slider-thumb {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
     height: 16px;
     width: 16px;
     border-radius: 50%;
     background: var(--blue);
     margin-top: -2px;
     cursor: pointer;
+    outline: 0;
+    border: 0;
   }
 
 .control-panel .button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
     outline: 0;
     border: 0;
     color: white;
@@ -135,4 +144,42 @@ main {
     text-transform: uppercase;
     transition: .2s;
     background: var(--blue);
+}
+
+.completed {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: white;
+    color: var(--blue);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid var(--blue);
+    font-size: 25px;
+    text-align: center;
+    box-shadow: 0 0 0 1000px rgb(0 0 0 / 30%);
+}
+
+.reset-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    padding: 5px 20px;
+    margin-top: 20px;
+    outline: 0;
+    border: 0;
+    color: white;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    transition: .2s;
+    background: var(--blue);
+    cursor: pointer;
 }

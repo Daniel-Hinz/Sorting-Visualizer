@@ -19,6 +19,7 @@ async function selectionSort(component, elements, speed) {
         component.setState({ elements: arr })
     }
 
+    document.querySelector('.completed').style.display = 'flex';
     return arr;
 }
 

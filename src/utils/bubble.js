@@ -14,6 +14,8 @@ async function bubbleSort(component, elements, speed) {
             );
         }   
     }
+
+    document.querySelector('.completed').style.display = 'flex';
 }
 export default bubbleSort;
 

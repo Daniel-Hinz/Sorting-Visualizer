@@ -1,6 +1,8 @@
 export default async function callMergeSort(component, elements, speed) {
     let arr = elements;
-    mergeSort(component, arr, 0, arr.length - 1, speed);
+    await mergeSort(component, arr, 0, arr.length - 1, speed);
+    document.querySelector('.completed').style.display = 'flex';
+
     return arr;
 }
 

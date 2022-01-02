@@ -20,7 +20,8 @@ async function insertionSort(component, elements, speed) {
 
       arr[j+1] = current;
     }
-    
+
+    document.querySelector('.completed').style.display = 'flex';
     return arr;
 }
 
