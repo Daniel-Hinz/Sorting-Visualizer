@@ -1,27 +1,27 @@
 import swap from './swap.js'
 
-export default async function callQuickSort(component, elements, speed) {
+export default async function callQuickSort(component, elements) {
     let arr = elements;
-    await quickSort(component, arr, 0, arr.length-1, speed);
+    await quickSort(component, arr, 0, arr.length-1);
     document.querySelector('.completed').style.display = 'flex';
     return arr;
 }
 
-async function quickSort(component, arr, left, right, speed) {
+async function quickSort(component, arr, left, right) {
     if (left < right) {
-        let pivot = await partition(component, arr, left, right, speed); 
+        let pivot = await partition(component, arr, left, right); 
 
-        await quickSort(component, arr, left, pivot - 1, speed);
-        await quickSort(component, arr, pivot + 1, right, speed);
+        await quickSort(component, arr, left, pivot - 1);
+        await quickSort(component, arr, pivot + 1, right);
 
         component.setState({ elements: arr })
         await new Promise((resolve) =>
-            setTimeout(() => { resolve() }, speed )
+            setTimeout(() => { resolve() }, component.state.speed )
         );
       }
   }
 
-async function partition(component, arr, left, right, speed) {
+async function partition(component, arr, left, right) {
     let pivot = arr[right];
     let i = (left - 1);
   
@@ -33,7 +33,7 @@ async function partition(component, arr, left, right, speed) {
 
         component.setState({ elements: arr })
         await new Promise((resolve) =>
-            setTimeout(() => { resolve() }, speed )
+            setTimeout(() => { resolve() }, component.state.speed )
         );
     }
 
@@ -41,7 +41,7 @@ async function partition(component, arr, left, right, speed) {
 
     component.setState({ elements: arr })
     await new Promise((resolve) =>
-        setTimeout(() => { resolve() }, speed )
+        setTimeout(() => { resolve() }, component.state.speed )
     );
     return (i + 1);
 }

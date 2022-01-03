@@ -1,6 +1,6 @@
 import swap from './swap.js'
  
-async function bubbleSort(component, elements, speed) { 
+async function bubbleSort(component, elements) { 
     let arr = elements;
 
     for (let i = 0; i < arr.length-1; i++) {
@@ -10,7 +10,7 @@ async function bubbleSort(component, elements, speed) {
                 
             component.setState({ elements: arr })
             await new Promise((resolve) =>
-                setTimeout(() => { resolve() }, speed )
+                setTimeout(() => { resolve() }, component.state.speed )
             );
         }   
     }

@@ -1,6 +1,6 @@
 import swap from './swap.js'
 
-async function selectionSort(component, elements, speed) {
+async function selectionSort(component, elements) {
     let arr = elements;
   
     for (let i = 0; i < arr.length; i++)  {
@@ -11,7 +11,7 @@ async function selectionSort(component, elements, speed) {
             min = j;
         
             await new Promise((resolve) =>
-                setTimeout(() => { resolve() }, speed )
+                setTimeout(() => { resolve() }, component.state.speed )
             );
         }
 

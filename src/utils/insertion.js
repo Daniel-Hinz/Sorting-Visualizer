@@ -1,6 +1,6 @@
 import swap from './swap.js'
 
-async function insertionSort(component, elements, speed) {
+async function insertionSort(component, elements) {
     let arr = elements;
   
     for (let i = 1; i < arr.length; ++i) {
@@ -14,7 +14,7 @@ async function insertionSort(component, elements, speed) {
           component.setState({ elements: arr })
 
           await new Promise((resolve) =>
-            setTimeout(() => { resolve() }, speed )
+            setTimeout(() => { resolve() }, component.state.speed )
           );
         }
 

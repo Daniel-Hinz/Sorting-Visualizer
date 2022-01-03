@@ -1,27 +1,27 @@
-export default async function callMergeSort(component, elements, speed) {
+export default async function callMergeSort(component, elements) {
     let arr = elements;
-    await mergeSort(component, arr, 0, arr.length - 1, speed);
+    await mergeSort(component, arr, 0, arr.length - 1);
     document.querySelector('.completed').style.display = 'flex';
-
     return arr;
 }
 
-async function mergeSort(component, arr, left, right, speed) {
+async function mergeSort(component, arr, left, right) {
     if(left < right) {
         let mid = left + parseInt((right - left) / 2);
   
-        await mergeSort(component, arr, left, mid, speed);
-        await mergeSort(component, arr, mid + 1, right, speed);
-        await merge(component, arr, left, mid, right, speed);
+        await mergeSort(component, arr, left, mid);
+        await mergeSort(component, arr, mid + 1, right);
+        await merge(component, arr, left, mid, right);
 
         component.setState({ elements: arr })
+
         await new Promise((resolve) =>
-          setTimeout(() => { resolve() }, speed )
+          setTimeout(() => { resolve() }, component.state.speed )
         );
     }
 }
 
-async function merge(component, arr, left, mid, right, speed) {
+async function merge(component, arr, left, mid, right) {
     let n1 = mid - left + 1;
     let n2 = right - mid;
 
@@ -48,7 +48,7 @@ async function merge(component, arr, left, mid, right, speed) {
 
       component.setState({ elements: arr })
       await new Promise((resolve) =>
-        setTimeout(() => { resolve() }, speed )
+        setTimeout(() => { resolve() }, component.state.speed )
       );
     }
 
